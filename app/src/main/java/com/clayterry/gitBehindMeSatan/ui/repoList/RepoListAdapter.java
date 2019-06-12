@@ -36,6 +36,8 @@ class RepoListAdapter extends RecyclerView.Adapter<RepoListAdapter.MyViewHolder>
         myViewHolder.mRepoName.setText(repo.getName());
         if (repo.getDescription() != null) {
             myViewHolder.mRepoDescription.setText(repo.getDescription());
+        } else {
+            myViewHolder.mRepoDescription.setText(R.string.vh_repo_desc);
         }
 
     }

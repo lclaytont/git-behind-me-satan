@@ -52,10 +52,11 @@ public class RepoListActivity extends BaseActivity {
     }
 
     private void fetchGitHubResponse(String searchParam) {
-        Call<GitHubResponse> call = mGitHubApi.fetchGitHubResponse(searchParam);
+        Call<GitHubResponse> call = mGitHubApi.fetchGitHubResponse(searchParam, 1, 20);
         call.enqueue(new Callback<GitHubResponse>() {
             @Override
             public void onResponse(Call<GitHubResponse> call, Response<GitHubResponse> response) {
+                Log.d(TAG, response.raw().toString());
                 if (response.isSuccessful()) {
                     if (response.body() != null) {
                         bindRepos(response.body());
@@ -64,7 +65,7 @@ public class RepoListActivity extends BaseActivity {
                         showErrorMessage();
                     }
                 } else {
-                    Log.d(TAG, "Network call not successful");
+                    Log.d(TAG, "Network unsuccessful: " + response.errorBody());
                     showErrorMessage();
                 }
             }
@@ -73,7 +74,7 @@ public class RepoListActivity extends BaseActivity {
 
             @Override
             public void onFailure(Call<GitHubResponse> call, Throwable t) {
-                Log.d(TAG, "Network Call Failure");
+                Log.d(TAG, "Network Call Failure: " + t.getMessage());
                 showErrorMessage();
             }
         });
@@ -83,9 +84,10 @@ public class RepoListActivity extends BaseActivity {
         List<Repo> repos = new ArrayList<>();
         repos.addAll(gitHubResponse.getItems());
 
-        mRecyclerView.findViewById(R.id.repo_recycler);
+        mRecyclerView = findViewById(R.id.repo_recycler);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRepoListAdapter = new RepoListAdapter(repos);
+        mRecyclerView.setAdapter(mRepoListAdapter);
     }
 
     private void showErrorMessage() {
