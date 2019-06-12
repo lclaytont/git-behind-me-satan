@@ -6,4 +6,5 @@
     <!--Repo List Activity String-->
     <string name="vh_repo_name">Repo Name</string>
     <string name="vh_repo_desc">No Description Provided</string>
+    <string name="error_loading_repos">Error Loading Repos</string>
 </resources>

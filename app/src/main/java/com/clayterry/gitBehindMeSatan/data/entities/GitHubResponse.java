@@ -13,4 +13,28 @@ public class GitHubResponse {
 
     @SerializedName("items")
     List<Repo> items;
+
+    public Integer getTotalCount() {
+        return totalCount;
+    }
+
+    public void setTotalCount(Integer totalCount) {
+        this.totalCount = totalCount;
+    }
+
+    public Boolean getIncompleteResults() {
+        return incompleteResults;
+    }
+
+    public void setIncompleteResults(Boolean incompleteResults) {
+        this.incompleteResults = incompleteResults;
+    }
+
+    public List<Repo> getItems() {
+        return items;
+    }
+
+    public void setItems(List<Repo> items) {
+        this.items = items;
+    }
 }

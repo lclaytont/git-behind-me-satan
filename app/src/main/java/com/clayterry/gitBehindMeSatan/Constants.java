@@ -2,7 +2,7 @@ package com.clayterry.gitBehindMeSatan;
 
 public class Constants {
 
-    public final static String BASE_URL = "https://api.github.com";
+    public final static String BASE_URL = "https://api.github.com/";
 
 
 
